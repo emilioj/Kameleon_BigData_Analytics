@@ -20,6 +20,8 @@ global:
   # To see the variables that you can override, use the following command:
   #
   #   kameleon info myvebida_stretch.yaml
+  default_keyboard_layout: es
+  default_timezone: Europe/Madrid
 
 bootstrap:
   - "@base"
