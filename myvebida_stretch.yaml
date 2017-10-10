@@ -22,6 +22,7 @@ global:
   #   kameleon info myvebida_stretch.yaml
   default_keyboard_layout: es
   default_timezone: Europe/Madrid
+  default_lang: en_US.UTF-8
 
 bootstrap:
   - "@base"
