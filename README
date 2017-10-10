@@ -1,0 +1,18 @@
+# Kameleon Big Data Analytics
+
+Kameleon recipe for an HPC Big Data Analytics software stack
+based on a Debian 9 (Stretch) template.
+
+Basic content:
+
+- Oracle's java
+- Apache Hadoop
+- Apache Spark
+- Apache Flink
+- Apache HBase
+- Apache Cassandra
+- Apache Thrift
+- ZeroMQ
+- OpenMPI
+
+Kameleon is a software appliance builder: http://kameleon.imag.fr
