@@ -24,11 +24,14 @@ global:
   default_timezone: Europe/Madrid
   default_lang: en_US.UTF-8
 
+  oracle_java_version: 8u144
+
 bootstrap:
   - "@base"
 
 setup:
   - "@base"
+  - java
 
 export:
   - "@base"
