@@ -1,0 +1,35 @@
+- hadoop_shortcut: $${install_dir}/hadoop
+- hadoop_home: $${install_dir}/hadoop-$${hadoop_version}
+- hadoop_location: http://apache.rediris.es/hadoop/common/hadoop-$${hadoop_version}
+- hadoop_uid: 501
+- hadoop_gid: 501
+
+- install_hadoop:
+  - download_file_in:
+    - $${hadoop_location}/hadoop-$${hadoop_version}.tar.gz
+    - $${hadoop_home}.tar.gz
+  - exec_in: tar -xf $${hadoop_home}.tar.gz -C $${install_dir}
+  - exec_in: rm -v $${hadoop_home}.tar.gz
+
+- configure:
+  - exec_in: ln -s -v $${hadoop_home} $${hadoop_shortcut}
+  - exec_in: |
+      cat >> /etc/environment <<"EOF"
+      HADOOP_HOME=$${hadoop_home}
+      HADOOP_CONF_DIR=$${hadoop_home}/etc/hadoop
+      EOF
+  - exec_in: |
+      cat >> /etc/profile.d/hadoop.sh <<"EOF"
+      PATH=$PATH:$HADOOP_HOME/bin
+      PATH=$PATH:$HADOOP_HOME/sbin
+      EOF
+
+- create_hadoop_user:
+  - exec_in: groupadd --system --gid $${hadoop_gid} hadoop
+  - exec_in: useradd --system --uid $${hadoop_uid} --gid $${hadoop_gid} hadoop
+  # Create the log dir to avoid root creating it on start
+  - exec_in: mkdir -m 775 $${hadoop_home}/logs
+  # Create empty exclude file
+  - exec_in: touch $${hadoop_home}/etc/hadoop/yarn.exclude
+  - exec_in: chmod 664 $${hadoop_home}/etc/hadoop/yarn.exclude
+  - exec_in: chown -R hadoop:hadoop $${hadoop_home}

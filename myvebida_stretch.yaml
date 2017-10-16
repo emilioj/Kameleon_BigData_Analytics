@@ -26,12 +26,16 @@ global:
 
   oracle_java_version: 8u144
 
+  install_dir: /opt
+  hadoop_version: 2.7.4
+
 bootstrap:
   - "@base"
 
 setup:
   - "@base"
   - java
+  - hadoop
 
 export:
   - "@base"
