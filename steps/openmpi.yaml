@@ -1,0 +1,2 @@
+- install:
+  - exec_in: apt-get install -y --no-install-recommends openmpi-bin libopenmpi-dev

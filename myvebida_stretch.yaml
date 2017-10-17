@@ -35,6 +35,7 @@ global:
   hbase_version: 1.2.6
   cassandra_version: 3.9
   # zeroMQ version (deb from official repos): 4.2.2
+  # OpenMPI version in Debian Stretch: 2.0.2
 
 bootstrap:
   - "@base"
@@ -48,6 +49,7 @@ setup:
   - hbase
   - cassandra
   - zeromq
+  - openmpi
 
 export:
   - "@base"
