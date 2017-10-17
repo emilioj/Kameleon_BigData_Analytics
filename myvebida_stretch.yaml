@@ -25,6 +25,8 @@ global:
   default_lang: en_US.UTF-8
 
   oracle_java_version: 8u144
+  # Oracle's java is NOT free software
+  # see license terms: http://www.oracle.com/technetwork/java/javase/terms/license/index.html
 
   install_dir: /opt
   hadoop_version: 2.7.4

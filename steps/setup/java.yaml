@@ -1,6 +1,9 @@
 #
 # Oracle Java for Debian based distribution
 #
+# Oracle's java is NOT free software
+# see license terms: http://www.oracle.com/technetwork/java/javase/terms/license/index.html
+#
 
 - get_java_deb:
   # Starting from a tarball to obtain a deb package:
