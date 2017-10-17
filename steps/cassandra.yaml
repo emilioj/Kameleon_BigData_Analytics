@@ -1,0 +1,19 @@
+- cassandra_shortcut: $${install_dir}/cassandra
+- cassandra_home: $${install_dir}/apache-cassandra-$${cassandra_version}
+- cassandra_location: http://archive.apache.org/dist/cassandra
+
+- install_cassandra:
+  - download_file_in:
+    - $${cassandra_location}/$${cassandra_version}/apache-cassandra-$${cassandra_version}-bin.tar.gz
+    - $${cassandra_home}.tar.gz
+  - exec_in: tar -xf $${cassandra_home}.tar.gz  -C $${install_dir}
+  - exec_in: rm $${cassandra_home}.tar.gz
+
+- configure:
+  # Simlink in home to easy access
+  - exec_in: ln -sv $${cassandra_home} $${cassandra_shortcut}
+  - exec_in: |
+      cat >> /etc/profile.d/cassandra.sh <<"EOF"
+      CASSANDRA_HOME=$${cassandra_home}
+      PATH=$PATH:$CASSANDRA_HOME/bin
+      EOF
