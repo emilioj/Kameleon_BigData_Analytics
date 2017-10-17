@@ -34,6 +34,7 @@ global:
   flink_variant: bin-hadoop27-scala_2.11
   hbase_version: 1.2.6
   cassandra_version: 3.9
+  thrift_version: 0.10.0
   # zeroMQ version (deb from official repos): 4.2.2
   # OpenMPI version in Debian Stretch: 2.0.2
 
@@ -48,6 +49,7 @@ setup:
   - flink
   - hbase
   - cassandra
+  - thrift
   - zeromq
   - openmpi
 

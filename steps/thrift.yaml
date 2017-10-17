@@ -1,0 +1,25 @@
+- thrift_shortcut: $${install_dir}/thrift
+- thrift_home: $${install_dir}/thrift-$${thrift_version}
+- thrift_location: http://apache.rediris.es/thrift/$${thrift_version}
+
+- install_thrift:
+  - exec_in: apt-get install -y --no-install-recommends bison flex g++ libboost-dev
+  - download_file_in:
+    - $${thrift_location}/thrift-$${thrift_version}.tar.gz
+    - $${thrift_home}.tar.gz
+  - exec_in: tar -xf $${thrift_home}.tar.gz  -C $${install_dir}
+  - exec_in: rm $${thrift_home}.tar.gz
+
+- configure:
+  # Simlink in home to easy access
+  - exec_in: ln -sv $${thrift_home} $${thrift_shortcut}
+  - exec_in: |
+      cat >> /etc/environment <<"EOF"
+      THRIFT_HOME=$${install_dir}/thrift-$${thrift_version}
+      THRIFT_CONF_DIR=$${install_dir}/thrift-$${thrift_version}/conf
+      EOF
+  - exec_in: |
+      cat >> /etc/profile.d/thrift.sh <<"EOF"
+      PATH=$PATH:$THRIFT_HOME/bin
+      LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$THRIFT_HOME/lib
+      EOF
