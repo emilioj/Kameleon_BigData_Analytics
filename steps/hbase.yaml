@@ -1,0 +1,20 @@
+- hbase_shortcut: $${install_dir}/hbase
+- hbase_home: $${install_dir}/hbase-$${hbase_version}
+- hbase_location: http://apache.rediris.es/hbase/$${hbase_version}
+
+- install_hbase:
+  - download_file_in:
+    - $${hbase_location}/hbase-$${hbase_version}-bin.tar.gz
+    - $${hbase_home}.tar.gz
+  - exec_in: tar -xf $${hbase_home}.tar.gz  -C $${install_dir}
+  - exec_in: rm $${hbase_home}.tar.gz
+
+- configure:
+  # Simlink in home to easy access
+  - exec_in: ln -sv $${hbase_home} $${hbase_shortcut}
+  - exec_in: |
+      cat >> /etc/profile.d/hbase.sh <<"EOF"
+      HBASE_HOME=$${hbase_home}
+      PATH=$PATH:$HBASE_HOME/bin
+      HADOOP_CLASSPATH=$${hbase_home}/lib/*:$HADOOP_CLASSPATH
+      EOF
