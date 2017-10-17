@@ -30,6 +30,8 @@ global:
   hadoop_version: 2.7.4
   spark_version: 2.2.0
   spark_variant: bin-without-hadoop
+  flink_version: 1.3.2
+  flink_variant: bin-hadoop27-scala_2.11
 
 bootstrap:
   - "@base"
@@ -39,6 +41,7 @@ setup:
   - java
   - hadoop
   - spark
+  - flink
 
 export:
   - "@base"

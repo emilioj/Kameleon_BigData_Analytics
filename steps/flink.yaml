@@ -1,0 +1,24 @@
+- flink_shortcut: $${install_dir}/flink
+- flink_distrib: $${flink_version}-$${flink_variant}
+- flink_home: $${install_dir}/flink-$${flink_distrib}
+- flink_location: http://www-eu.apache.org/dist/flink/flink-$${flink_version}
+
+- install_flink:
+  - download_file_in:
+    - $${flink_location}/flink-$${flink_distrib}.tgz
+    - $${flink_home}.tgz
+  - exec_in: tar -xf $${flink_home}.tgz -C $${install_dir}
+  - exec_in: rm $${flink_home}.tgz
+
+- configure:
+  # Simlink in home to easy access
+  - exec_in: ln -sv $${install_dir}/flink-$${flink_version} $${flink_shortcut}
+  - exec_in: |
+      cat >> /etc/environment <<"EOF"
+      FLINK_HOME=$${install_dir}/flink-$${flink_version}
+      FLINK_CONF_DIR=$${install_dir}/flink-$${flink_version}/conf
+      EOF
+  - exec_in: |
+      cat >> /etc/profile.d/flink.sh <<"EOF"
+      PATH=$PATH:$FLINK_HOME/bin
+      EOF
