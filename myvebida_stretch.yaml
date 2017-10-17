@@ -34,6 +34,7 @@ global:
   flink_variant: bin-hadoop27-scala_2.11
   hbase_version: 1.2.6
   cassandra_version: 3.9
+  # zeroMQ version (deb from official repos): 4.2.2
 
 bootstrap:
   - "@base"
@@ -46,6 +47,7 @@ setup:
   - flink
   - hbase
   - cassandra
+  - zeromq
 
 export:
   - "@base"
