@@ -1,0 +1,41 @@
+- spark_shortcut: $${install_dir}/spark
+- spark_distrib: $${spark_version}-$${spark_variant}
+- spark_home: $${install_dir}/spark-$${spark_distrib}
+- spark_location: https://d3kbcqa49mib13.cloudfront.net
+- spark_uid: 500
+- spark_gid: 500
+
+- install_spark:
+  - download_file_in:
+    - $${spark_location}/spark-$${spark_distrib}.tgz
+    - $${spark_home}.tgz
+  - exec_in: tar -xf $${spark_home}.tgz -C $${install_dir}
+  - exec_in: rm $${spark_home}.tgz
+
+- configure:
+  # Simlink in home to easy access
+  - exec_in: ln -sv $${spark_home} $${spark_shortcut}
+  - exec_in: |
+      cat >> /etc/environment <<"EOF"
+      SPARK_HOME=$${spark_home}
+      EOF
+  # put in the PATH spark usefull binaries
+  - exec_in: |
+      cat >> /etc/profile.d/spark.sh <<"EOF"
+      PATH=$PATH:$SPARK_HOME/bin
+      PATH=$PATH:$SPARK_HOME/sbin
+      EOF
+  # include Hadoop’s package jars
+  - exec_in: cp $${spark_home}/conf/spark-env.sh.template $${spark_home}/conf/spark-env.sh
+  - exec_in: |
+      cat >> $${spark_home}/conf/spark-env.sh <<"EOF"
+      # 'hadoop' binary is supposed to be on PATH
+      export SPARK_DIST_CLASSPATH=$(hadoop classpath)
+      EOF
+
+- create_spark_user:
+  - exec_in: groupadd --system --gid $${spark_gid} spark
+  - exec_in: useradd --system --uid $${spark_uid} --gid $${spark_gid} spark
+  # Create the log dir to avoid root creating it on start
+  - exec_in: mkdir -m 775 $${spark_home}/logs $${spark_home}/work
+  - exec_in: chown -R spark:spark $${spark_home}
