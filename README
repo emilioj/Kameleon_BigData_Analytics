@@ -16,3 +16,7 @@ Basic content:
 - OpenMPI
 
 Kameleon is a software appliance builder: http://kameleon.imag.fr
+
+**Watch out!**
+Binary files in this repo are stored using Git Large File Storage (LFS)
+Execute `git-lfs checkout` to get them.
