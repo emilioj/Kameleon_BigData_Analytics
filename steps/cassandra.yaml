@@ -1,10 +1,11 @@
 - cassandra_shortcut: $${install_dir}/cassandra
 - cassandra_home: $${install_dir}/apache-cassandra-$${cassandra_version}
-- cassandra_location: http://archive.apache.org/dist/cassandra
+- cassandra_location: http://apache.rediris.es/cassandra/$${cassandra_version}
+#- cassandra_location: http://www-eu.apache.org/dist/cassandra/$${cassandra_version}
 
 - install_cassandra:
   - download_file_in:
-    - $${cassandra_location}/$${cassandra_version}/apache-cassandra-$${cassandra_version}-bin.tar.gz
+    - $${cassandra_location}/apache-cassandra-$${cassandra_version}-bin.tar.gz
     - $${cassandra_home}.tar.gz
   - exec_in: tar -xf $${cassandra_home}.tar.gz  -C $${install_dir}
   - exec_in: rm $${cassandra_home}.tar.gz

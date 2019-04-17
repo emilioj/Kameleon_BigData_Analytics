@@ -1,7 +1,8 @@
 - flink_shortcut: $${install_dir}/flink
 - flink_distrib: $${flink_version}-$${flink_variant}
 - flink_home: $${install_dir}/flink-$${flink_distrib}
-- flink_location: http://www-eu.apache.org/dist/flink/flink-$${flink_version}
+- flink_location: http://apache.rediris.es/flink/flink-$${flink_version}
+#- flink_location: http://www-eu.apache.org/dist/flink/flink-$${flink_version}
 
 - install_flink:
   - download_file_in:

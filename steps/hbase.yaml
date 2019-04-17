@@ -1,6 +1,7 @@
 - hbase_shortcut: $${install_dir}/hbase
 - hbase_home: $${install_dir}/hbase-$${hbase_version}
 - hbase_location: http://apache.rediris.es/hbase/$${hbase_version}
+#- hbase_location: http://www-eu.apache.org/dist/hbase/hbase-$${hbase_version}
 
 - install_hbase:
   - download_file_in:

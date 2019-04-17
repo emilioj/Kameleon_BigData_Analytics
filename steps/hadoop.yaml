@@ -1,6 +1,7 @@
 - hadoop_shortcut: $${install_dir}/hadoop
 - hadoop_home: $${install_dir}/hadoop-$${hadoop_version}
 - hadoop_location: http://apache.rediris.es/hadoop/common/hadoop-$${hadoop_version}
+#- hadoop_location: http://www-eu.apache.org/dist/hadoop/common/hadoop-$${hadoop_version}  
 - hadoop_uid: 501
 - hadoop_gid: 501
 

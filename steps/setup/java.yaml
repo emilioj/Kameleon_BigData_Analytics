@@ -18,20 +18,8 @@
         - $${kameleon_data_dir}/oracle-java8-jdk_$${oracle_java_version}_amd64_stretch.deb
         - /tmp/oracle-java8-jdk_$${oracle_java_version}_amd64.deb
 
-# I tried this alternative to install all dependencies with no user interaction... but it did not work :-/
-# - rescue:
-#   - exec_in: dpkg -i /tmp/oracle-java8-jdk_$${oracle_java_version}_amd64.deb
-#   - exec-in: apt-get -f install -y --no-install-recommends
-
-# I also tried this, with no success (again, the error returned by dpkg results in a prompt requesting user interaction
-# - install:
-#   - exec_in: dpkg --post-invoke="apt-get -f install -y --no-install-recommends" -i /tmp/oracle-java8-jdk_$${oracle_java_version}_amd64.deb
-
 - install:
-  # First, I explicitly install all dependencies
-  - exec_in: apt-get install -y --no-install-recommends fontconfig fontconfig-config fonts-dejavu-core gnome-icon-theme gtk-update-icon-cache hicolor-icon-theme java-common libasound2 libasound2-data libatk1.0-0 libatk1.0-data libavahi-client3 libavahi-common-data libavahi-common3 libcairo2 libcroco3 libcups2 libdatrie1 libdrm2 libfontconfig1 libgdk-pixbuf2.0-0 libgdk-pixbuf2.0-common libgl1-mesa-glx libglapi-mesa libglib2.0-0 libgraphite2-3 libgtk2.0-0 libgtk2.0-common libharfbuzz0b libicu57 libjbig0 libjpeg62-turbo libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0 libpixman-1-0 librsvg2-2 librsvg2-common libthai-data libthai0 libtiff5 libx11-xcb1 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-render0 libxcb-shm0 libxcb-sync1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxinerama1 libxml2 libxrandr2 libxrender1 libxshmfence1 libxslt1.1 libxtst6 libxxf86vm1 shared-mime-info x11-common
-  # Now I install the java deb package
-  - exec_in: dpkg -i /tmp/oracle-java8-jdk_$${oracle_java_version}_amd64.deb
+  - exec_in: apt install -y /tmp/oracle-java8-jdk_$${oracle_java_version}_amd64.deb
 
 - configure:
   - exec_in: |

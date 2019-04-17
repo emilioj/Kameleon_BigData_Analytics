@@ -1,7 +1,8 @@
 - spark_shortcut: $${install_dir}/spark
 - spark_distrib: $${spark_version}-$${spark_variant}
 - spark_home: $${install_dir}/spark-$${spark_distrib}
-- spark_location: https://d3kbcqa49mib13.cloudfront.net
+- spark_location: http://apache.rediris.es/spark/spark-$${spark_version}
+#- spark_location: http://www-eu.apache.org/dist/spark/spark-$${spark_version}
 - spark_uid: 500
 - spark_gid: 500
 
