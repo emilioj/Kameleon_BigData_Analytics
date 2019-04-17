@@ -17,6 +17,29 @@ Basic content:
 
 Kameleon is a software appliance builder: http://kameleon.imag.fr
 
+Backend used to build the image from recipes: qemu
+
 **Watch out!**
 Binary files in this repo are stored using Git Large File Storage (LFS)
 Execute `git-lfs checkout` to get them.
+
+
+## Image acess
+
+Root's password: kameleon
+
+Additionally, a user is created during the image creation process
+(user/password: kameleon). By commenting this line in the base.yaml
+recipe (default/from_upstream_build/base.yaml), this user is available
+in the final image:
+
+       #  Uncomment the following line in base.yaml to clear user'kameleon'
+       #  in the final image:
+       #  - clean_system
+
+
+## Test image in a computer with QEMU
+
+Launch with QEMU in your local system
+
+       qemu-system-x86_64 -enable-kvm build/myvebida_stretch/myvebida_stretch.qcow2

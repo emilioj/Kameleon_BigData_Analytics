@@ -10,7 +10,7 @@
   # - local2in:
   #       - $${kameleon_data_dir}/jdk-$${oracle_java_version}-linux-x64.tar.gz
   #       - /tmp/jdk-$${oracle_java_version}-linux-x64.tar.gz
-  # - exec_in: apt-get install -y --no-install-recommends java-package java-common
+  # - exec_in: apt-get update && apt-get install -y --no-install-recommends java-package java-common
   # - exec_in: su -c "cd /tmp && echo y | make-jpkg /tmp/jdk-$${oracle_java_version}-linux-x64.tar.gz" kameleon
   #
   # Directly from a deb package:
