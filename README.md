@@ -24,7 +24,7 @@ Binary files in this repo are stored using Git Large File Storage (LFS)
 Execute `git-lfs checkout` to get them.
 
 
-## Image acess
+## Accessing image
 
 Root's password: kameleon
 
@@ -38,7 +38,7 @@ in the final image:
        #  - clean_system
 
 
-## Test image in a computer with QEMU
+## Testing image in a computer with QEMU
 
 Launch with QEMU in your local system
 
